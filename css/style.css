@@ -32,20 +32,17 @@ body {
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; padding: 0; }
 
-/* =========================================
-   2. LAYOUT & CONTAINER
-   ========================================= */
+/* LAYOUT & CONTAINER */
+
 .container {
     max-width: 1200px;
     margin: 30px auto;
     padding: 0 20px;
     width: 100%;
-    flex: 1; /* Pushes footer to the bottom */
+    flex: 1;
 }
 
-/* =========================================
-   3. HEADER & NAVIGATION
-   ========================================= */
+/* HEADER & NAVIGATION */
 header {
     background-color: var(--white);
     padding: 15px 40px;
@@ -89,9 +86,7 @@ header nav a[href*="logout"]:hover {
     color: var(--white);
 }
 
-/* =========================================
-   4. DASHBOARD CARDS & GRIDS
-   ========================================= */
+/* DASHBOARD CARDS & GRIDS */
 .welcome-section {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: var(--white);
@@ -138,9 +133,7 @@ header nav a[href*="logout"]:hover {
     margin-bottom: 15px;
 }
 
-/* =========================================
-   5. FORMS & INPUTS
-   ========================================= */
+/* FORMS & INPUTS */
 .form-group { margin-bottom: 20px; }
 
 .form-group label {
@@ -184,9 +177,7 @@ input:focus, textarea:focus, select:focus {
     margin-bottom: 10px;
 }
 
-/* =========================================
-   6. TABLES
-   ========================================= */
+/* TABLES */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -216,9 +207,7 @@ td {
 
 tr:hover td { background-color: #fcfcfc; }
 
-/* =========================================
-   7. BUTTONS & BADGES
-   ========================================= */
+/* BUTTONS & BADGES */
 .btn {
     display: inline-block;
     padding: 10px 20px;
@@ -258,9 +247,7 @@ tr:hover td { background-color: #fcfcfc; }
 .status.approved, .status.Completed { background: #d4edda; color: #155724; }
 .status.rejected { background: #f8d7da; color: #721c24; }
 
-/* =========================================
-   8. LOGIN PAGE
-   ========================================= */
+/* LOGIN PAGE */
 .login-card {
     background: var(--white);
     padding: 40px;
@@ -274,9 +261,7 @@ tr:hover td { background-color: #fcfcfc; }
 .login-card h2 { color: var(--primary); margin-bottom: 25px; }
 .login-card button { width: 100%; margin-top: 10px; padding: 12px; font-size: 16px; }
 
-/* =========================================
-   9. FOOTER
-   ========================================= */
+/* FOOTER */
 footer {
     background-color: var(--primary);
     color: var(--white);
@@ -285,22 +270,21 @@ footer {
     margin-top: auto;
     font-size: 14px;
 }
-/* =========================================
-   10. IMAGE STYLING (The Fix)
-   ========================================= */
 
-/* 1. Property Cards (User Browse & Owner My Properties) */
+/* IMAGE STYLING */
+
+/* Property Cards (User Browse & Owner My Properties) */
 .card img {
-    width: 100%;            /* Force full width */
-    height: 200px;          /* Fixed height */
-    object-fit: cover;      /* Crops image nicely */
+    width: 100%;     
+    height: 200px;       
+    object-fit: cover; 
     border-radius: 8px;
     border-bottom: 1px solid #eee;
     margin-bottom: 15px;
-    background-color: #eee; /* Placeholder color */
+    background-color: #eee; 
 }
 
-/* 2. Admin/Owner Table Thumbnails */
+/* Admin/Owner Table Thumbnails */
 table td img {
     width: 50px;
     height: 50px;
@@ -310,7 +294,7 @@ table td img {
     vertical-align: middle;
 }
 
-/* 3. Profile Images (Circular) */
+/* Profile Images (Circular) */
 .profile-img-large {
     width: 120px;
     height: 120px;
@@ -320,7 +304,7 @@ table td img {
     margin-bottom: 15px;
 }
 
-/* 4. Upload Preview (In Edit Forms) */
+/* Upload Preview (In Edit Forms) */
 .img-preview {
     width: 100px;
     height: 100px;

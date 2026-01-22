@@ -75,7 +75,6 @@ class AdminController {
 
     // --- ADMIN PROFILE ---
     public function profile() {
-        // $_SESSION['user_id'] holds the admin_id from Login
         $admin = $this->model->getAdmin($_SESSION['user_id']);
         include 'views/admin/profile.php';
     }

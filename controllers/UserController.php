@@ -29,7 +29,6 @@ class UserController {
         }
     }
 
-    // 👇 FIXED: Renamed from 'myBookings' to 'bookings' to match ?action=bookings
     public function bookings() {
         $bookings = $this->model->getMyBookings($_SESSION['user_id']);
         include 'views/user/bookings.php';

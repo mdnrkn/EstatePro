@@ -11,29 +11,24 @@ class OwnerController {
         $this->model = new OwnerModel($db);
     }
 
-    // --- HELPER: Image Upload Function ---
     private function uploadImage($file) {
         $target_dir = "uploads/";
 
-        // 1. Create folder if missing
         if (!file_exists($target_dir)) {
             mkdir($target_dir, 0777, true);
         }
 
-        // 2. Validate
         $file_name = basename($file["name"]);
         $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
         $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
 
         if (!in_array($file_ext, $allowed)) {
-            return "default.jpg"; // Fallback
+            return "default.jpg"; 
         }
 
-        // 3. Generate Unique Name (e.g. 65a1b2.jpg)
         $new_name = uniqid() . "." . $file_ext;
         $target_file = $target_dir . $new_name;
 
-        // 4. Move File
         if (move_uploaded_file($file["tmp_name"], $target_file)) {
             return $new_name;
         }
@@ -41,7 +36,6 @@ class OwnerController {
         return "default.jpg";
     }
 
-    // --- DASHBOARD ---
     public function dashboard() {
         $user = $this->model->getOwner($_SESSION['user_id']);
         $stats = $this->model->getStats($_SESSION['user_id']);
@@ -57,7 +51,6 @@ class OwnerController {
         include 'views/owner/add_property.php';
     }
 
-    // --- STORE PROPERTY (With Image) ---
     public function store_property() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $prop_id = 'p-' . rand(1000, 9999);
@@ -66,7 +59,6 @@ class OwnerController {
             $desc = $_POST['description'];
             $location = $_POST['location'];
 
-            // Handle Upload
             $image_name = "default.jpg";
             if (!empty($_FILES['image']['name'])) {
                 $image_name = $this->uploadImage($_FILES['image']);
@@ -78,7 +70,6 @@ class OwnerController {
         }
     }
 
-    // --- EDIT PROPERTY ---
     public function edit_property() {
         if(isset($_GET['id'])) {
             $prop = $this->model->getProperty($_GET['id']);
@@ -86,19 +77,16 @@ class OwnerController {
         }
     }
 
-    // --- UPDATE PROPERTY (With Image Replacement) ---
     public function update_property_submit() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $prop_id = $_POST['property_id'];
             $name = $_POST['property_name'];
             $price = $_POST['property_price'];
             $desc = $_POST['description'];
-            $location = $_POST['location']; // Ensure this is captured
+            $location = $_POST['location']; 
 
-            // Keep old image by default
             $image_name = $_POST['current_image'];
 
-            // If new image uploaded, replace it
             if (!empty($_FILES['new_image']['name'])) {
                 $image_name = $this->uploadImage($_FILES['new_image']);
             }

@@ -11,7 +11,6 @@
 
                 <div style="text-align: center; margin-bottom: 20px;">
                     <?php
-                    // Image path logic for MVC
                     $img_src = !empty($user['profile_pic']) ? 'uploads/' . $user['profile_pic'] : 'https://via.placeholder.com/150';
                     ?>
                     <img src="<?php echo $img_src; ?>" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid #3498db;">

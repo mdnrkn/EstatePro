@@ -10,7 +10,6 @@ class StaffController {
     }
 
     public function dashboard() {
-        // Simple dashboard showing tasks count
         $tasks = $this->model->getAssignedTasks($_SESSION['user_id']);
         include 'views/staff/dashboard.php';
     }

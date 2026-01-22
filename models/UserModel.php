@@ -11,7 +11,6 @@ class UserModel {
         $sql = "SELECT * FROM property_info WHERE status = 'Available'";
         if (!empty($search)) {
             $search = $this->conn->real_escape_string($search);
-            // Search by name or location (if location column exists)
             $sql .= " AND (property_name LIKE '%$search%' OR location LIKE '%$search%')";
         }
         return $this->conn->query($sql);
@@ -29,7 +28,6 @@ class UserModel {
 
     // --- BOOKING LOGIC ---
     public function bookProperty($prop_id, $user_id) {
-        // Prevent duplicate booking
         $check = "SELECT * FROM bookings WHERE prop_id = '$prop_id' AND user_id = '$user_id'";
         $result = $this->conn->query($check);
 
@@ -37,11 +35,10 @@ class UserModel {
             $sql = "INSERT INTO bookings (prop_id, user_id, booking_date, status) VALUES ('$prop_id', '$user_id', NOW(), 'Pending')";
             return $this->conn->query($sql);
         }
-        return false; // Already booked
+        return false;
     }
 
     public function getMyBookings($user_id) {
-        // FIXED: Joins with property_info table (not 'properties')
         $sql = "SELECT b.*, p.property_name, p.property_price 
                 FROM bookings b 
                 JOIN property_info p ON b.prop_id = p.property_id 
@@ -59,13 +56,12 @@ class UserModel {
         return $this->conn->affected_rows > 0;
     }
 
-    // --- PROFILE LOGIC (FIXED) ---
+    // --- PROFILE LOGIC ---
     public function getUserDetails($user_id) {
         $sql = "SELECT * FROM user WHERE user_id = '$user_id'";
         return $this->conn->query($sql)->fetch_assoc();
     }
 
-    // 👇 FIXED: Added $sec_ans parameter
     public function updateProfile($user_id, $name, $phone, $pass, $sec_ans) {
         $name = $this->conn->real_escape_string($name);
         $phone = $this->conn->real_escape_string($phone);

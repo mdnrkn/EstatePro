@@ -3,7 +3,7 @@ class Database {
     private $host = "localhost";
     private $user = "root";
     private $pass = "";
-    private $dbname = "real_estate_management_system"; // Your DB Name
+    private $dbname = "real_estate_management_system"; 
 
     public $conn;
 

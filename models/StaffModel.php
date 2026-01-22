@@ -10,13 +10,11 @@ class StaffModel {
     }
 
     public function getAssignedTasks($id) {
-        // Joins with property_info table now
         $sql = "SELECT b.*, p.property_name, u.name as requester_name 
                 FROM bookings b 
                 LEFT JOIN property_info p ON b.prop_id = p.property_id 
                 LEFT JOIN user u ON b.user_id = u.user_id
                 WHERE b.status = 'Approved' OR b.status = 'Assigned'";
-        // Note: You might need to add a 'staff_id' column to bookings table if you want to assign specific staff
         return $this->conn->query($sql);
     }
 

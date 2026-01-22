@@ -13,8 +13,6 @@ class AuthController {
         $role = $_POST['role'];
         $id = $_POST['id'];
         $pass = $_POST['password'];
-
-        // Map Role to Table Name & ID Column
         $table = "";
         $id_col = "";
 
@@ -34,11 +32,10 @@ class AuthController {
 
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
-            $_SESSION['user_id'] = $user[$id_col]; // Generic ID storage
+            $_SESSION['user_id'] = $user[$id_col]; 
             $_SESSION['name'] = $user['name'];
             $_SESSION['role'] = $role;
 
-            // Redirect to Master Router
             header("Location: index.php?action=dashboard");
         } else {
             echo "<script>alert('Invalid ID or Password'); window.location.href='index.php';</script>";
